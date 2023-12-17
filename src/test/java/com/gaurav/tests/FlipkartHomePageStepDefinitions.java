@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.gaurav.pages.HomePage;
@@ -31,6 +32,8 @@ public class FlipkartHomePageStepDefinitions {
     public void navigateToFlipkartSite() {
         homePage.navigateTo("https://www.flipkart.com/");
         captureScreenshot();
+        Allure.addAttachment("Flipkart-navigate","Navigate to the Flipkart site");
+
     }
 
     @When("^I perform some verification on the Flipkart site$")
@@ -41,12 +44,14 @@ public class FlipkartHomePageStepDefinitions {
         Assert.assertTrue(pageTitle.contains("Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!"));
         Assert.assertTrue(homePage.isLogoDisplayed());
         captureScreenshot();
+        Allure.addAttachment("Flipkart-title","Perform verification on the Flipkart site");
     }
 
     @Then("^I should close the browser$")
     @Step("Close the browser")
     public void closeBrowser() {
         captureScreenshot(); // Capture a screenshot before closing
+        Allure.addAttachment("Flipkart-test-end","Closing the browser");
         tearDown();
     }
 
@@ -59,6 +64,10 @@ public class FlipkartHomePageStepDefinitions {
 
     @Attachment(value = "Screenshot", type = "image/png")
     public byte[] captureScreenshot() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        System.out.println("Screenshot captured: " + screenshot.length + " bytes");
+        return screenshot;
     }
+
+
 }
