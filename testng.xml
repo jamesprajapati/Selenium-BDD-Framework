@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CucumberSuite" verbose="1">
+    <listeners>
+        <listener class-name="org.gaurav.listeners.TestAllureListener" />
+    </listeners>
+
+    <test name="CucumberTest">
+        <classes>
+            <class name="com.gaurav.TESTRUNNER.TestRunner" />
+        </classes>
+    </test>
+</suite>

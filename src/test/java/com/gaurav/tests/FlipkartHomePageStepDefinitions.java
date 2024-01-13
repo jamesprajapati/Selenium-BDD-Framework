@@ -5,25 +5,25 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.gaurav.pages.HomePage;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.gaurav.listeners.TestAllureListener;
+import org.gaurav.base.basepage;
+
+@Listeners({TestAllureListener.class})
 public class FlipkartHomePageStepDefinitions {
-    private WebDriver driver;
-    private HomePage homePage;
+    public basepage baseobject;
+    public WebDriver driver;
+    public HomePage homePage;
 
     @Before
     public void setUp() {
         // Setup WebDriver using WebDriverManager
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        baseobject = new basepage();
+        driver = baseobject.initialize_driver();
         homePage = new HomePage(driver);
     }
 
@@ -31,9 +31,6 @@ public class FlipkartHomePageStepDefinitions {
     @Step("Navigate to the Flipkart site")
     public void navigateToFlipkartSite() {
         homePage.navigateTo("https://www.flipkart.com/");
-        captureScreenshot();
-        Allure.addAttachment("Flipkart-navigate","Navigate to the Flipkart site");
-
     }
 
     @When("^I perform some verification on the Flipkart site$")
@@ -41,33 +38,23 @@ public class FlipkartHomePageStepDefinitions {
     public void performVerification() {
         // Perform any verification steps, for example, checking the title and logo
         String pageTitle = homePage.getPageTitle();
-        Assert.assertTrue(pageTitle.contains("Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!"));
+        Assert.assertTrue(pageTitle.contains("Online Shopping Site for Mobiles++, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!"));
+
+    }
+
+    @When("^I verified the Flipkart Site logo$")
+    @Step("perform Logo Verification")
+    public void logoVerification(){
         Assert.assertTrue(homePage.isLogoDisplayed());
-        captureScreenshot();
-        Allure.addAttachment("Flipkart-title","Perform verification on the Flipkart site");
     }
 
     @Then("^I should close the browser$")
     @Step("Close the browser")
     public void closeBrowser() {
-        captureScreenshot(); // Capture a screenshot before closing
-        Allure.addAttachment("Flipkart-test-end","Closing the browser");
-        tearDown();
+     //   tearDown();
     }
 
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 
-    @Attachment(value = "Screenshot", type = "image/png")
-    public byte[] captureScreenshot() {
-        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-        System.out.println("Screenshot captured: " + screenshot.length + " bytes");
-        return screenshot;
-    }
 
 
 }
