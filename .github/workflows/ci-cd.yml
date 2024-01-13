@@ -42,5 +42,8 @@ jobs:
       - name: Generate Allure Reports
         run: mvn allure:report
 
-      - name: Serve Allure Reports
-        run: mvn allure:serve
+      - name: Archive Allure Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-results
+          path: target/allure-results
