@@ -4,15 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.gaurav</groupId>
-    <artifactId>Selenium-BDD-Framework</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
     <properties>
+        <!-- Define version properties -->
+        <selenium.version>4.8.1</selenium.version>
+        <testng.version>7.7.0</testng.version>
+        <cucumber.version>7.0.0</cucumber.version>
+        <allure.version>2.17.3</allure.version>
+        <allure.cucumber.version>2.17.0</allure.cucumber.version>
+        <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <groupId>org.gaurav</groupId>
+    <artifactId>Selenium-BDD-Framework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
     <build>
         <plugins>
             <plugin>
@@ -20,82 +28,67 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm</value>
-                        </property>
-                    </properties>
-                    <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>target/allure-results</value>
-                        </property>
-                    </systemProperties>
+                    <!-- ... -->
                 </configuration>
             </plugin>
             <!-- Other plugins... -->
-
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
                 <configuration>
-                    <reportVersion>2.17.0</reportVersion> <!-- Replace with the latest version -->
+                    <reportVersion>${allure.version}</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.8.1</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.7.0</version>
+            <version>${testng.version}</version>
         </dependency>
 
         <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.0.0</version>
+            <version>${cucumber.version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>7.0.0</version>
+            <version>${cucumber.version}</version>
         </dependency>
 
         <!-- Allure -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.17.3</version>
+            <version>${allure.version}</version>
         </dependency>
 
         <!-- Allure Cucumber Plugin -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
-            <version>2.17.0</version> <!-- Replace with the latest version -->
+            <version>${allure.cucumber.version}</version>
         </dependency>
 
         <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.4.3</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
     </dependencies>
 </project>

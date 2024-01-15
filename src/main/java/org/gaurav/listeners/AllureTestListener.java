@@ -11,10 +11,13 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.ByteArrayInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class TestAllureListener implements ITestListener {
+public class AllureTestListener implements ITestListener {
 
-    public String getTestMethodName(ITestResult iTestResult) {
+    private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
 
@@ -63,19 +66,21 @@ public class TestAllureListener implements ITestListener {
         Object testClass = iTestResult.getInstance();
         WebDriver driver = basepage.getDriver();
 
-        if(driver != null) {
-            // Allure ScreenShotRobot and SaveTestLog
+        // Save the screenshot to a folder
+        if (driver instanceof WebDriver) {
+            saveScreenshotToFolder(driver, getTestMethodName(iTestResult));
+        }
+
+        // Allure ScreenShotRobot and SaveTestLog
+        if (driver instanceof WebDriver) {
             System.out.println("Screenshot captured for test case:" + getTestMethodName(iTestResult));
             saveScreenshotPNG(driver);
-            byte[] screenshot = saveScreenshotPNG(driver);
-
-            // Log or print the path to console
-            String screenshotPath = saveScreenshotAndGetPath(driver, screenshot, iTestResult);
-            System.out.println("Screenshot captured: " + screenshotPath);
         }
+
         // Save a log on allure.
         saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
     }
+
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
@@ -87,14 +92,18 @@ public class TestAllureListener implements ITestListener {
         System.out.println("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));
     }
 
+    private void saveScreenshotToFolder(WebDriver driver, String testName) {
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        String screenshotName = testName.replaceAll(" ", "_");
+        String screenshotPath = "target/screenshots/" + screenshotName + ".png";
 
-    private String saveScreenshotAndGetPath(WebDriver driver, byte[] screenshot, ITestResult iTestResult) {
-        String screenshotPath =System.getProperty("user.dir")+"\\"+getTestMethodName(iTestResult)+".png";  // Customize the path
-
-        // Save the screenshot
-        Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
-
-        return screenshotPath;
+        try {
+            Path path = Paths.get(screenshotPath);
+            Files.createDirectories(path.getParent());
+            Files.write(path, screenshot);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

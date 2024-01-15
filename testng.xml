@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="CucumberSuite" verbose="1">
     <listeners>
-        <listener class-name="org.gaurav.listeners.TestAllureListener" />
+        <listener class-name="org.gaurav.listeners.AllureTestListener" />
     </listeners>
 
     <test name="CucumberTest">

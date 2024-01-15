@@ -2,18 +2,24 @@ package com.gaurav.tests;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.gaurav.pages.HomePage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.gaurav.listeners.TestAllureListener;
+import org.gaurav.listeners.AllureTestListener;
 import org.gaurav.base.basepage;
 
-@Listeners({TestAllureListener.class})
+import java.io.ByteArrayInputStream;
+
+@Listeners({AllureTestListener.class})
 public class FlipkartHomePageStepDefinitions {
     public basepage baseobject;
     public WebDriver driver;
@@ -51,8 +57,18 @@ public class FlipkartHomePageStepDefinitions {
     @Then("^I should close the browser$")
     @Step("Close the browser")
     public void closeBrowser() {
-     //   tearDown();
+        //TearDown();
     }
+
+
+    @After
+    public void TearDown(Scenario scenario){
+          if(scenario.isFailed()){
+              byte[] screenshot = ( (TakesScreenshot)driver) . getScreenshotAs (OutputType. BYTES) ;
+              Allure.addAttachment("Fai1ed Screenshot", new ByteArrayInputStream(screenshot));
+          }
+    }
+
 
 
 

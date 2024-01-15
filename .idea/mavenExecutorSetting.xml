@@ -53,12 +53,15 @@
         <entry key="BDDExecution">
           <value>
             <ExecutionSettings>
+              <option name="alwaysUpdateSnapshot" value="true" />
               <option name="goals">
                 <list>
                   <option value="install" />
                   <option value="allure:serve" />
                 </list>
               </option>
+              <option name="threadCount" value="0" />
+              <option name="isAlwaysUpdateSnapshot" value="true" />
               <option name="projectsToBuild">
                 <list>
                   <ProjectToBuild>
