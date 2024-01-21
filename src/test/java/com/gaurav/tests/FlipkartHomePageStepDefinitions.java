@@ -7,7 +7,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import org.gaurav.pages.HomePage;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -33,14 +32,14 @@ public class FlipkartHomePageStepDefinitions {
         homePage = new HomePage(driver);
     }
 
-    @Given("^I navigate to the Flipkart site$")
-    @Step("Navigate to the Flipkart site")
+    @Given("I navigate to the Flipkart site")
+  //  @Step("Navigate to the Flipkart site")
     public void navigateToFlipkartSite() {
         homePage.navigateTo("https://www.flipkart.com/");
     }
 
-    @When("^I perform some verification on the Flipkart site$")
-    @Step("Perform verification on the Flipkart site")
+    @When("I perform some verification on the Flipkart site")
+   // @Step("Perform verification on the Flipkart site")
     public void performVerification() {
         // Perform any verification steps, for example, checking the title and logo
         String pageTitle = homePage.getPageTitle();
@@ -48,14 +47,14 @@ public class FlipkartHomePageStepDefinitions {
 
     }
 
-    @When("^I verified the Flipkart Site logo$")
-    @Step("perform Logo Verification")
+    @When("I verified the Flipkart Site logo")
+    //@Step("perform Logo Verification")
     public void logoVerification(){
         Assert.assertTrue(homePage.isLogoDisplayed());
     }
 
-    @Then("^I should close the browser$")
-    @Step("Close the browser")
+    @Then("I should close the browser")
+   // @Step("Close the browser")
     public void closeBrowser() {
         //TearDown();
     }

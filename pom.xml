@@ -11,6 +11,7 @@
         <cucumber.version>7.0.0</cucumber.version>
         <allure.version>2.17.3</allure.version>
         <allure.cucumber.version>2.17.0</allure.cucumber.version>
+        <allure.attachments.version>2.17.0</allure.attachments.version>
         <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
@@ -43,6 +44,7 @@
                             <name>allure.results.directory</name>
                             <value>target/allure-results</value>
                         </property>
+                    </systemProperties>
                 </configuration>
             </plugin>
             <!-- Other plugins... -->
@@ -68,7 +70,7 @@
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
+            <artifactId>testng</artifactId> 
             <version>${testng.version}</version>
         </dependency>
 
@@ -96,6 +98,13 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
             <version>${allure.cucumber.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-attachments -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-attachments</artifactId>
+            <version>${allure.attachments.version}</version>
         </dependency>
 
         <!-- WebDriverManager -->

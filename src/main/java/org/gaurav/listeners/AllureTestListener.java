@@ -11,14 +11,22 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 
 public class AllureTestListener implements ITestListener {
 
     private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
+    }
+
+
+    @Attachment(value = "Screenshot on failure", type = "image/png")
+    public byte[] attachScreenshotPNG(byte[] screenshot) {
+        return screenshot;
     }
 
     // Text attachments for Allure
@@ -62,7 +70,11 @@ public class AllureTestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
+       // System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
+        String methodName = iTestResult.getMethod().getMethodName();
+        String scenarioName = iTestResult.getMethod().getConstructorOrMethod().getMethod().getName();
+        System.out.println("Test failed: " + methodName + " (Scenario: " + scenarioName + ")");
+
         Object testClass = iTestResult.getInstance();
         WebDriver driver = basepage.getDriver();
 
@@ -74,7 +86,9 @@ public class AllureTestListener implements ITestListener {
         // Allure ScreenShotRobot and SaveTestLog
         if (driver instanceof WebDriver) {
             System.out.println("Screenshot captured for test case:" + getTestMethodName(iTestResult));
-            saveScreenshotPNG(driver);
+            byte[] screenshot =((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            attachScreenshotPNG(screenshot);
+            //saveScreenshotPNG(driver);
         }
 
         // Save a log on allure.
@@ -96,11 +110,13 @@ public class AllureTestListener implements ITestListener {
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         String screenshotName = testName.replaceAll(" ", "_");
         String screenshotPath = "target/screenshots/" + screenshotName + ".png";
-
         try {
             Path path = Paths.get(screenshotPath);
             Files.createDirectories(path.getParent());
             Files.write(path, screenshot);
+            byte[] fileContent = Files.readAllBytes(path);
+            String base64Content = Base64.getEncoder().encodeToString(fileContent);
+            Allure.addAttachment("Screenshot", "image/png", base64Content);
         } catch (Exception e) {
             e.printStackTrace();
         }

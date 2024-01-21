@@ -6,6 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="eacc0048-2cfe-441e-bdbe-96a0920a9f1c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/08d3e8a2-9406-4436-8039-9b579c3918bb-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/0b588d26-f430-423d-9008-904beb7c0c77-result.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/17e7b108-6a27-4562-8939-bdc7f519aeca-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/1c3ac023-f1ae-404d-9db5-82ad2ef693e1-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/4c4c9ddb-93b5-4df4-a625-d71d5216b822-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/5be06f6e-10b1-4b19-bd2f-b38eb823da31-attachment" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/9620a830-e12f-4c9a-8144-62b489c3e7ce-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/9a7f43a7-279d-4ba0-ba59-1ca49a7697c8-result.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/9c6f0386-cede-441d-8259-b5f244109bc9-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/a3ab717a-742f-40e4-a947-0257119310bc-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/c5fbd202-ac55-44b5-945f-c1f00dabec3e-result.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/cf30e72a-cddd-4926-bbd1-1be305ba7d4e-attachment" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/ecb5815d-34ca-425f-ad90-3dac2fff1d13-container.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allure-results/ff953a36-ff6b-4965-852b-b835b418369a-result.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/gaurav/listeners/AllureTestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/gaurav/listeners/AllureTestListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gaurav/tests/FlipkartHomePageStepDefinitions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gaurav/tests/FlipkartHomePageStepDefinitions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +82,7 @@
       <command value="mvn allure:report" />
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.TestRunner">
+  <component name="RunManager" selected="TestNG.C:/Users/gmpra/Documents/Gaurav_Work/Selenium/Selenium-BDD-Framework/testng.xml">
     <configuration name="C:/Users/gmpra/Documents/Gaurav_Work/Selenium/Selenium-BDD-Framework/testng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium-BDD-Framework" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/testng.xml" />
@@ -95,8 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.TestRunner" />
         <item itemvalue="TestNG.C:/Users/gmpra/Documents/Gaurav_Work/Selenium/Selenium-BDD-Framework/testng.xml" />
+        <item itemvalue="TestNG.TestRunner" />
       </list>
     </recent_temporary>
   </component>
